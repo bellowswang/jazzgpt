@@ -135,7 +135,10 @@ def process_midi_file(file_path, track_name='guitar', subdivision=16):
             all_guitar_notes.extend(guitar_notes)
     else:
         print(f"No '{track_name}' track found in the MIDI file.")
-    return all_guitar_notes, key, midi_file.ticks_per_beat
+    return {'notes': all_guitar_notes,
+            'key': key,
+            'ticks_per_beat': midi_file.ticks_per_beat,
+            'sample_steps_per_beat': subdivision}
 
 
 def extract_tokens_with_granularity(track, ticks_per_beat, subdivision=16):
